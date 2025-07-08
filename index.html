@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hub Etec Darcy Pereira</title>
+
+    <link rel="icon" href="imagens/aurabranco.jpg" type="image/png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* Cores e Fontes */
+        :root {
+            /* Tema Claro (Padrão) */
+            --cor-principal: #8e44ad;
+            /* Roxo principal */
+            --cor-secundaria: #6c3a88;
+            /* Roxo mais escuro para títulos/texto secundário */
+            --cor-fundo: #ecf0f1;
+            /* Cinza claro */
+            --cor-texto: #333;
+            --cor-texto-claro: #fff;
+            --cor-card-fundo: #fff;
+            /* Fundo dos cards */
+            --cor-borda-card: #ddd;
+            /* Borda da imagem do card */
+            --sombra-caixa: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --transicao-suave: all 0.3s ease-in-out;
+            --transicao-rapida: all 0.2s ease-out;
+            --cor-raio: #8e44ad;
+            --cor-raio-hover: #7f379f;
+            /* Para o placeholder no modo claro, obter as cores em RGB */
+            --cor-texto-rgb: 51, 51, 51;
+            /* RGB de #333 */
+            --cor-principal-rgb: 142, 68, 173;
+            /* RGB de #8e44ad */
+            /* Cores específicas para a Equação */
+            --cor-icone-cerebro: #3498db;
+            /* Azul para Tecnologia */
+            --cor-icone-coracao: #e74c3c;
+            /* Vermelho para Design */
+            --cor-texto-alma: var(--cor-principal);
+            /* Roxo para Alma */
+            --cor-fundo-equacao: #f8f8f8;
+            /* Fundo suave para a seção */
+            --sombra-equacao: 0 5px 20px rgba(0, 0, 0, 0.08);
+
+            /* Novas cores para melhor contraste e vivacidade */
+            --cor-destaque: #e74c3c;
+            /* Um vermelho mais vibrante para contraste */
+            --cor-sombra-leve: rgba(0, 0, 0, 0.05);
+        }
+
+        /* Tema Escuro */
+        body.dark-mode {
+            --cor-principal: #bb86fc;
+            /* Roxo claro para destaque no escuro */
+            --cor-secundaria: #03dac6;
+            /* Ciano para títulos/texto secundário no escuro */
+            --cor-fundo: #121212;
+            /* Fundo muito escuro */
+            --cor-texto: #e0e0e0;
+            /* Texto claro */
+            --cor-texto-claro: #121212;
+            /* Para elementos que precisam ser escuros no dark mode (ex: texto dentro do botão) */
+            --cor-card-fundo: #1e1e1e;
+            /* Fundo dos cards mais escuro */
+            --cor-borda-card: #333;
+            /* Borda da imagem do card mais escura */
+            --sombra-caixa: 0 4px 15px rgba(0, 0, 0, 0.4);
+            --cor-raio: #bb86fc;
+            --cor-raio-hover: #9c68ea;
+            /* Para o placeholder no modo escuro, obter as cores em RGB */
+            --cor-texto-rgb: 224, 224, 224;
+            /* RGB de #e0e0e0 */
+            --cor-principal-rgb: 187, 134, 252;
+            /* RGB de #bb86fc */
+            /* Cores específicas para a Equação no Dark Mode */
+            --cor-icone-cerebro: #64b5f6;
+            /* Azul mais claro */
+            --cor-icone-coracao: #ff8a80;
+            /* Vermelho mais claro */
+            --cor-texto-alma: var(--cor-principal);
+            --cor-fundo-equacao: #1c1c1c;
+            /* Fundo escuro para a seção */
+            --sombra-equacao: 0 5px 20px rgba(0, 0, 0, 0.3);
+
+            /* Novas cores para melhor contraste e vivacidade no dark mode */
+            --cor-destaque: #f1c40f;
+            /* Um amarelo para contraste */
+            --cor-sombra-leve: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Estilos Globais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            /* Fonte principal */
+            line-height: 1.6;
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto);
+            padding-top: 100px;
+            /* Ajuste para diminuir a sobreposição do header (Desktop) */
+            transition: background-color var(--transicao-suave), color var(--transicao-suave);
+            /* Transição para as cores de fundo e texto */
+        }
+
+        /* Cursor padrão "pointer" para elementos clicáveis */
+        a,
+        button,
+        .project-card,
+        .theme-toggle {
+            cursor: pointer;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Cabeçalho Fixo */
+        .header {
+            background-color: var(--cor-card-fundo);
+            box-shadow: var(--sombra-caixa);
+            padding: 5px 0;
+            /* Diminuindo o padding do cabeçalho */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            text-align: center;
+            transition: var(--transicao-suave);
+        }
+
+        .header.scrolled {
+            padding: 5px 0;
+            /* Mantendo o padding para quando rolar */
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            /* Diminuindo o gap */
+            position: relative;
+        }
+
+        .header-actions {
+            position: absolute;
+            right: 20px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .theme-toggle {
+            font-size: 1.5rem;
+            /* Tamanho do ícone menor */
+            color: var(--cor-principal);
+            transition: color 0.3s ease, transform 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            /* Tamanho do botão menor */
+            height: 35px;
+            /* Tamanho do botão menor */
+            border-radius: 50%;
+            background-color: transparent;
+            border: none;
+            padding: 0;
+        }
+
+        .theme-toggle:hover {
+            color: var(--cor-raio-hover);
+            transform: scale(1.1);
+        }
+
+        /* Melhoria de acessibilidade: Foco visível para o botão de tema */
+        .theme-toggle:focus {
+            outline: 2px solid var(--cor-principal);
+            outline-offset: 2px;
+            border-radius: 50%;
+        }
+
+        /* Novas regras para as logos */
+        .logo.aura-light {
+            height: 100px;
+            /* Diminuindo o tamanho da logo */
+            display: block;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .logo.aura-dark {
+            height: 60px;
+            /* Diminuindo o tamanho da logo no dark mode */
+            display: block;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .logo.aura-dark {
+            display: none;
+        }
+
+        body.dark-mode .logo.aura-light {
+            display: none;
+        }
+
+        body.dark-mode .logo.aura-dark {
+            display: block;
+        }
+
+        .header-content .logo.etec {
+            height: 50px;
+            /* Diminuindo o tamanho da logo Etec */
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 80px;
+                /* Ajuste para evitar sobreposição do header (Tablet) */
+            }
+
+            .header-content {
+                gap: 8px;
+            }
+
+            .logo.aura-light {
+                height: 80px;
+                max-width: 40%;
+            }
+
+            .logo.aura-dark {
+                height: 50px;
+                max-width: 40%;
+            }
+
+            .header-content .logo.etec {
+                height: 35px;
+                max-width: 30%;
+            }
+
+            .header h1 {
+                font-size: 1.6rem;
+            }
+
+            .header p {
+                font-size: 0.75rem;
+            }
+
+            .header-actions {
+                right: 15px;
+                gap: 10px;
+            }
+
+            .theme-toggle {
+                font-size: 1.3rem;
+                width: 30px;
+                height: 30px;
+            }
+
+            /* Responsividade para a Equação */
+            .equation-section .equation-item {
+                flex-basis: 100%;
+                margin-bottom: 25px;
+            }
+
+            .equation-section .plus-sign,
+            .equation-section .equals-sign {
+                display: none;
+            }
+
+            .equation-section .equation-item:last-child {
+                margin-bottom: 0;
+            }
+
+            .equation-section .equation-item h3 {
+                font-size: 1.2rem;
+            }
+
+            .equation-section .equation-item i {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding-top: 70px;
+                /* Ajuste para evitar sobreposição do header (Mobile) */
+            }
+
+            .header {
+                padding: 5px 0;
+            }
+
+            .header-content {
+                gap: 5px;
+            }
+
+            .logo.aura-light {
+                height: 70px;
+                max-width: 45%;
+            }
+
+            .logo.aura-dark {
+                height: 40px;
+                max-width: 45%;
+            }
+
+            .header-content .logo.etec {
+                height: 25px;
+                max-width: 35%;
+            }
+
+            .header h1 {
+                font-size: 1.3rem;
+            }
+
+            .header p {
+                font-size: 0.7rem;
+            }
+
+            .header-actions {
+                right: 10px;
+                gap: 8px;
+            }
+
+            .theme-toggle {
+                font-size: 1.1rem;
+                width: 28px;
+                height: 28px;
+            }
+
+            .equation-section {
+                padding: 30px 0;
+            }
+        }
+
+        .header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2rem;
+            color: var(--cor-principal);
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header-content h1 span {
+            display: none;
+        }
+
+        .header p {
+            font-size: 0.95rem;
+            max-width: 600px;
+            margin: 10px auto 0;
+            /* Diminuindo o espaçamento superior */
+            color: var(--cor-secundaria);
+            font-weight: 400;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        /* Animação para o parágrafo do cabeçalho */
+        .header p.animate-in {
+            animation: fadeInSlideUp 0.8s ease-out forwards;
+            animation-delay: 0.5s;
+        }
+
+
+        /* Seção de Projetos */
+        .portfolio-section {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .portfolio-section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8rem;
+            color: var(--cor-secundaria);
+            margin-bottom: 60px;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        /* Animação para o título da seção de projetos */
+        .portfolio-section h2.animate-in {
+            animation: fadeInSlideUp 0.8s ease-out forwards;
+        }
+
+
+        .portfolio-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background-color: var(--cor-principal);
+            border-radius: 5px;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            justify-content: center;
+        }
+
+        .project-card {
+            background-color: var(--cor-card-fundo);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px var(--cor-sombra-leve);
+            transition: transform var(--transicao-suave), box-shadow var(--transicao-suave), border-color var(--transicao-suave);
+            text-align: left;
+            position: relative;
+            cursor: pointer;
+            border: 2px solid transparent;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        /* Melhoria: Borda da imagem agora é um estilo no card */
+        .project-card:not(.no-border-img) img {
+            border-bottom: none;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        .project-card img {
+            border-bottom: 1px solid var(--cor-borda-card);
+        }
+
+        .project-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 15px 35px var(--sombra-caixa);
+            border-color: var(--cor-principal);
+        }
+
+        body.dark-mode .project-card:hover {
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+        }
+
+        .project-card:focus-within {
+            border-color: var(--cor-principal);
+            box-shadow: 0 0 0 4px rgba(var(--cor-principal-rgb), 0.5);
+            outline: none;
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .project-info {
+            padding: 25px;
+        }
+
+        .project-info h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.6rem;
+            color: var(--cor-secundaria);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .project-info p {
+            font-size: 1rem;
+            color: var(--cor-texto);
+            margin-bottom: 25px;
+        }
+
+        .project-link {
+            display: inline-block;
+            background-color: var(--cor-principal);
+            color: var(--cor-texto-claro);
+            padding: 14px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: background-color var(--transicao-rapida), transform var(--transicao-rapida), box-shadow var(--transicao-rapida);
+            white-space: nowrap;
+            box-shadow: 0 4px 10px rgba(var(--cor-principal-rgb), 0.3);
+        }
+
+        .project-link:hover {
+            background-color: var(--cor-raio-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(var(--cor-principal-rgb), 0.4);
+        }
+
+        /* Melhoria de acessibilidade: Foco visível para o link do projeto */
+        .project-link:focus {
+            outline: 2px solid var(--cor-destaque);
+            outline-offset: 3px;
+            border-radius: 50px;
+        }
+
+        /* Melhoria: Feedback visual ao clicar */
+        .project-link:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 5px rgba(var(--cor-principal-rgb), 0.2);
+        }
+
+        .project-link.disabled {
+            background-color: #bdc3c7 !important;
+            cursor: not-allowed !important;
+            opacity: 0.7;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        .project-link.disabled:hover {
+            background-color: #bdc3c7 !important;
+        }
+
+        /* Rodapé */
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 60px;
+            border-top: 1px solid var(--cor-borda-card);
+            color: var(--cor-texto);
+            font-size: 0.95rem;
+        }
+
+        .footer p {
+            font-size: 0.9rem;
+        }
+
+        /* Melhoria: Efeito de batimento cardíaco no ícone do rodapé */
+        .footer p i.fa-heart {
+            color: var(--cor-destaque);
+            animation: pulse 1.5s infinite ease-in-out;
+            display: inline-block;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Animação para cards de projeto */
+        .project-card.animate {
+            animation: fadeInSlideUp 0.8s ease-out forwards;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeInSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Estilos dos Modais (Pop-up) - Login Modal Removido */
+        /* Removido completamente o CSS do modal de login já que a funcionalidade foi removida */
+
+        /* --- Início: Melhorias de Responsividade para Mobile (Max-width 600px) --- */
+        @media (max-width: 600px) {
+            body {
+                padding-top: 100px;
+            }
+
+            .portfolio-section {
+                padding: 40px 0;
+                padding-top: 80px;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .project-card {
+                padding: 0;
+                text-align: center;
+            }
+
+            .project-card img {
+                height: 180px;
+                border-radius: 15px 15px 0 0;
+            }
+
+            .project-info {
+                padding: 20px;
+            }
+
+            .project-info h3 {
+                font-size: 1.4rem;
+                margin-bottom: 8px;
+            }
+
+            .project-info p {
+                font-size: 0.95rem;
+                max-height: 4.5em;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: normal;
+                margin-bottom: 15px;
+                transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+                opacity: 1;
+            }
+
+            .project-card .project-link {
+                display: none;
+                margin-top: 15px;
+                opacity: 0;
+                transition: opacity 0.3s ease-out;
+            }
+
+            .project-card.expanded {
+                max-height: none;
+            }
+
+            .project-card.expanded .project-info p {
+                max-height: none;
+                overflow: visible;
+                text-overflow: clip;
+                opacity: 1;
+            }
+
+            .project-card.expanded .project-link {
+                display: inline-block;
+                opacity: 1;
+            }
+
+        }
+
+        /* --- Fim: Melhorias de Responsividade para Mobile --- */
+
+        /* --- Início: Estilos para a Seção da Equação --- */
+        .equation-section {
+            background-color: var(--cor-fundo-equacao);
+            padding: 90px 0;
+            text-align: center;
+            box-shadow: var(--sombra-equacao);
+            margin-top: 70px;
+            border-top: 1px solid var(--cor-borda-card);
+            border-bottom: 1px solid var(--cor-borda-card);
+            transition: var(--transicao-suave);
+        }
+
+        .equation-section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8rem;
+            color: var(--cor-secundaria);
+            margin-bottom: 60px;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        /* Animação para o título da seção de equação */
+        .equation-section h2.animate-in {
+            animation: fadeInSlideUp 0.8s ease-out forwards;
+        }
+
+
+        .equation-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background-color: var(--cor-principal);
+            border-radius: 5px;
+        }
+
+        .equation-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .equation-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--cor-card-fundo);
+            border-radius: 15px;
+            padding: 35px;
+            box-shadow: 0 8px 20px var(--cor-sombra-leve);
+            min-width: 220px;
+            transition: var(--transicao-suave);
+            flex: 1;
+            max-width: 300px;
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        body.dark-mode .equation-item {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Melhoria: Efeito hover suave para os itens da equação */
+        .equation-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px var(--sombra-caixa);
+        }
+
+
+        .equation-item i {
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+            line-height: 1;
+            transition: color 0.3s ease;
+        }
+
+        .equation-item h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.7rem;
+            color: var(--cor-secundaria);
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .equation-item p {
+            font-size: 1rem;
+            color: var(--cor-texto);
+            margin-top: 8px;
+        }
+
+        /* Cores específicas dos ícones */
+        .equation-item.brain i {
+            color: var(--cor-icone-cerebro);
+        }
+
+        .equation-item.heart i {
+            color: var(--cor-icone-coracao);
+        }
+
+        .equation-item.soul i {
+            color: var(--cor-texto-alma);
+        }
+
+        body.dark-mode .equation-item.soul i {
+            color: var(--cor-secundaria);
+        }
+
+
+        .plus-sign,
+        .equals-sign {
+            font-size: 4rem;
+            color: var(--cor-principal);
+            font-weight: 700;
+            margin: 0 25px;
+            line-height: 1;
+            transition: color var(--transicao-suave);
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        /* Animação de entrada para a seção inteira ao mudar o tema */
+        .equation-section.animate .equation-item,
+        .equation-section.animate .plus-sign,
+        .equation-section.animate .equals-sign {
+            animation: fadeInScaleUp 0.8s ease-out forwards;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Delay para cada item da equação */
+        .equation-section.animate .equation-item:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .equation-section.animate .plus-sign:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .equation-section.animate .equation-item:nth-child(3) {
+            animation-delay: 0.5s;
+        }
+
+        .equation-section.animate .equals-sign:nth-child(4) {
+            animation-delay: 0.7s;
+        }
+
+        .equation-section.animate .equation-item:nth-child(5) {
+            animation-delay: 0.9s;
+        }
+
+
+        @keyframes fadeInScaleUp {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Transição para a seção inteira ao mudar o tema */
+        .equation-section {
+            transition: background-color var(--transicao-suave), box-shadow var(--transicao-suave), border-color var(--transicao-suave);
+        }
+
+        /* --- Fim: Estilos para a Seção da Equação --- */
+    </style>
+</head>
+
+<body>
+
+    <header class="header" id="home">
+        <div class="container">
+            <div class="header-content">
+                <img src="./img/logo.png" alt="Logo da Aura, tema claro" class="logo aura-light">
+                <img src="./img/logo2.png" alt="Logo da Aura, tema escuro" class="logo aura-dark">
+
+                <img src="https://bkpsitecpsnew.blob.core.windows.net/uploadsitecps/sites/90/2024/03/etec-darcy_pereira_de_moraes.png"
+                    alt="Logo da Etec Darcy Pereira de Moraes" class="logo etec">
+
+                <div class="header-actions">
+                    <button id="themeToggle" class="theme-toggle" aria-label="Alternar tema claro e escuro">
+                        <i class="fas fa-sun"></i> </button>
+                </div>
+            </div>
+            <p role="doc-subtitle" class="header-description">Conheça os projetos incríveis que criamos para a Etec
+                Darcy Pereira.</p>
+        </div>
+    </header>
+
+    <main class="portfolio-section" id="portfolio">
+        <div class="container">
+            <h2 id="nossos-projetos">Nossos Projetos</h2>
+            <div class="project-grid" id="projectGrid">
+                <div class="project-card">
+                    <img src="https://www.radiojornalsaomiguel.com.br/wp-content/uploads/2021/09/achados-e-perdidos.jpg"
+                        alt="Ilustração do projeto de Achados e Perdidos, com uma mão segurando uma lupa sobre itens">
+                    <div class="project-info">
+                        <h3 id="achados-e-perdidos-titulo">Achados e Perdidos</h3>
+                        <p>Plataforma para facilitar a busca e devolução de itens perdidos dentro da escola, conectando
+                            alunos e funcionários.</p>
+                        <a href="https://sardelaz.github.io/Achados-e-Perdidos/" class="project-link" target="_blank"
+                            aria-labelledby="achados-e-perdidos-titulo" aria-describedby="achados-e-perdidos-desc">Ver
+                            Projeto</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/600x400/9b59b6/ffffff?text=Proximos+Projetos"
+                        alt="Ilustração de um futuro projeto">
+                    <div class="project-info">
+                        <h3 id="proximos-projetos-titulo">Próximos Projetos</h3>
+                        <p>Fique atento! Estamos trabalhando em novas soluções inovadoras para a comunidade da Etec. Em
+                            breve, mais novidades!</p>
+                        <a href="#" class="project-link disabled" onclick="return false;"
+                            aria-labelledby="proximos-projetos-titulo"
+                            aria-describedby="proximos-projetos-desc">Em Breve</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <section class="equation-section">
+        <div class="container">
+            <h2 id="nossa-filosofia">Nossa Filosofia</h2>
+            <div class="equation-container">
+                <div class="equation-item brain">
+                    <i class="fas fa-brain" aria-hidden="true"></i>
+                    <h3>Cérebro</h3>
+                    <p>Tecnologia</p>
+                </div>
+                <span class="plus-sign" aria-hidden="true">+</span>
+                <div class="equation-item heart">
+                    <i class="fas fa-heart" aria-hidden="true"></i>
+                    <h3>Coração</h3>
+                    <p>Design</p>
+                </div>
+                <span class="equals-sign" aria-hidden="true">=</span>
+                <div class="equation-item soul">
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <h3>Alma</h3>
+                    <p>Impacto e Inovação</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Aura Dev. Todos os direitos reservados. Feito com <i class="fas fa-heart"
+                    aria-hidden="true"></i> para a Etec Darcy Pereira.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Smooth Scroll para links internos (ainda funciona para a navegação normal, caso tenha)
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Animação de entrada para os cards de projeto (Intersection Observer)
+            const projectCards = document.querySelectorAll('.project-card');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.2
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                    }
+                });
+            }, observerOptions);
+
+            // Observa os cards existentes na carga inicial
+            projectCards.forEach(card => {
+                observer.observe(card);
+            });
+
+            // Animação para o parágrafo do cabeçalho
+            const headerDescription = document.querySelector('.header-description');
+            if (headerDescription) {
+                headerDescription.classList.add('animate-in');
+            }
+
+
+            // Efeito de encolhimento do header (mantido)
+            window.addEventListener('scroll', () => {
+                const header = document.querySelector('.header');
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Função para alternar a classe 'expanded' nos cards (para mobile)
+            function toggleProjectCardExpansion(event) {
+                // Previne a expansão se o clique for no link (para que o link funcione)
+                if (event.target.closest('.project-link') || event.target.tagName === 'BUTTON') {
+                    return;
+                }
+                this.classList.toggle('expanded');
+            }
+
+            function setupCardClickListeners() {
+                document.querySelectorAll('.project-card').forEach(card => {
+                    card.removeEventListener('click', toggleProjectCardExpansion); // Remove antes para evitar duplicatas
+                    if (window.innerWidth <= 600) {
+                        card.addEventListener('click', toggleProjectCardExpansion);
+                        card.classList.remove('expanded'); // Garante que não está expandido ao redimensionar para mobile
+                    } else {
+                        card.classList.remove('expanded'); // Garante que não está expandido em desktop
+                    }
+                });
+            }
+            setupCardClickListeners(); // Chama na carga inicial
+
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    setupCardClickListeners();
+                }, 250);
+            });
+
+            /* --- Lógica para o Tema Claro/Escuro --- */
+            const themeToggleBtn = document.getElementById('themeToggle');
+            const body = document.body;
+            const auraLightLogo = document.querySelector('.logo.aura-light');
+            const auraDarkLogo = document.querySelector('.logo.aura-dark');
+
+
+            function applyTheme(isDarkMode) {
+                if (isDarkMode) {
+                    body.classList.add('dark-mode');
+                    themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
+                    themeToggleBtn.setAttribute('aria-label', 'Alternar para tema claro');
+                    auraLightLogo.style.display = 'none';
+                    auraDarkLogo.style.display = 'block';
+                } else {
+                    body.classList.remove('dark-mode');
+                    themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
+                    themeToggleBtn.setAttribute('aria-label', 'Alternar para tema escuro');
+                    auraLightLogo.style.display = 'block';
+                    auraDarkLogo.style.display = 'none';
+                }
+            }
+
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            if (savedTheme === 'dark') {
+                applyTheme(true);
+            } else if (savedTheme === 'light') {
+                applyTheme(false);
+            } else if (prefersDarkScheme) {
+                applyTheme(true);
+            } else {
+                applyTheme(false);
+            }
+
+            themeToggleBtn.addEventListener('click', () => {
+                const isDarkMode = body.classList.contains('dark-mode');
+                applyTheme(!isDarkMode);
+                localStorage.setItem('theme', isDarkMode ? 'light' : 'dark');
+            });
+            /* --- Fim: Lógica para o Tema Claro/Escuro --- */
+
+            // Animação para os títulos das seções (Nossos Projetos e Nossa Filosofia)
+            const sectionTitles = document.querySelectorAll('.portfolio-section h2, .equation-section h2');
+            const titleObserverOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.5
+            };
+
+            const titleObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, titleObserverOptions);
+
+            sectionTitles.forEach(title => {
+                titleObserver.observe(title);
+            });
+
+            // Animação para a seção da Equação
+            const equationSection = document.querySelector('.equation-section');
+            const equationObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        equationSection.classList.add('animate');
+                        observer.unobserve(equationSection);
+                    }
+                });
+            }, {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.3
+            });
+
+            equationObserver.observe(equationSection);
+        });
+    </script>
+    <script data-cfasync="false" data-account="SUA_CONTA_AQUI" src="https://cdn.userway.org/widget.js"></script>
+    </body>
+
+</html>
