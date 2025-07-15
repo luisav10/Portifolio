@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -61,40 +61,23 @@
         /* Tema Escuro */
         body.dark-mode {
             --cor-principal: #bb86fc;
-            /* Roxo claro para destaque no escuro */
             --cor-secundaria: #03dac6;
-            /* Ciano para títulos/texto secundário no escuro */
             --cor-fundo: #121212;
-            /* Fundo muito escuro */
             --cor-texto: #e0e0e0;
-            /* Texto claro */
             --cor-texto-claro: #121212;
-            /* Para elementos que precisam ser escuros no dark mode (ex: texto dentro do botão) */
             --cor-card-fundo: #1e1e1e;
-            /* Fundo dos cards mais escuro */
             --cor-borda-card: #333;
-            /* Borda da imagem do card mais escura */
             --sombra-caixa: 0 4px 15px rgba(0, 0, 0, 0.4);
             --cor-raio: #bb86fc;
             --cor-raio-hover: #9c68ea;
-            /* Para o placeholder no modo escuro, obter as cores em RGB */
             --cor-texto-rgb: 224, 224, 224;
-            /* RGB de #e0e0e0 */
             --cor-principal-rgb: 187, 134, 252;
-            /* RGB de #bb86fc */
-            /* Cores específicas para a Equação no Dark Mode */
             --cor-icone-cerebro: #64b5f6;
-            /* Azul mais claro */
             --cor-icone-coracao: #ff8a80;
-            /* Vermelho mais claro */
             --cor-texto-alma: var(--cor-principal);
             --cor-fundo-equacao: #1c1c1c;
-            /* Fundo escuro para a seção */
             --sombra-equacao: 0 5px 20px rgba(0, 0, 0, 0.3);
-
-            /* Novas cores para melhor contraste e vivacidade no dark mode */
             --cor-destaque: #f1c40f;
-            /* Um amarelo para contraste */
             --cor-sombra-leve: rgba(255, 255, 255, 0.05);
         }
 
@@ -111,21 +94,17 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            /* Fonte principal */
             line-height: 1.6;
             background-color: var(--cor-fundo);
             color: var(--cor-texto);
             padding-top: 100px;
-            /* Ajuste para diminuir a sobreposição do header (Desktop) */
             transition: background-color var(--transicao-suave), color var(--transicao-suave);
-            /* Transição para as cores de fundo e texto */
         }
 
         /* Cursor padrão "pointer" para elementos clicáveis */
         a,
         button,
-        .project-card,
-        .theme-toggle {
+        .project-card {
             cursor: pointer;
         }
 
@@ -140,7 +119,6 @@
             background-color: var(--cor-card-fundo);
             box-shadow: var(--sombra-caixa);
             padding: 5px 0;
-            /* Diminuindo o padding do cabeçalho */
             position: fixed;
             top: 0;
             left: 0;
@@ -152,7 +130,6 @@
 
         .header.scrolled {
             padding: 5px 0;
-            /* Mantendo o padding para quando rolar */
         }
 
         .header-content {
@@ -160,7 +137,6 @@
             align-items: center;
             justify-content: center;
             gap: 15px;
-            /* Diminuindo o gap */
             position: relative;
         }
 
@@ -171,53 +147,28 @@
             gap: 15px;
         }
 
-        .theme-toggle {
-            font-size: 1.5rem;
-            /* Tamanho do ícone menor */
-            color: var(--cor-principal);
-            transition: color 0.3s ease, transform 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 35px;
-            /* Tamanho do botão menor */
-            height: 35px;
-            /* Tamanho do botão menor */
-            border-radius: 50%;
-            background-color: transparent;
-            border: none;
-            padding: 0;
-        }
-
-        .theme-toggle:hover {
-            color: var(--cor-raio-hover);
-            transform: scale(1.1);
-        }
-
-        /* Melhoria de acessibilidade: Foco visível para o botão de tema */
-        .theme-toggle:focus {
-            outline: 2px solid var(--cor-principal);
-            outline-offset: 2px;
-            border-radius: 50%;
-        }
-
-        /* Novas regras para as logos */
-        .logo.aura-light {
+        /* Novas regras para as logos (agora na seção "Nossa Filosofia") */
+        .logo.aura-light,
+        .logo.aura-dark,
+        .logo.etec {
             height: 100px;
-            /* Diminuindo o tamanho da logo */
-            display: block;
+            display: none; /* Escondido por padrão, será exibido na seção de filosofia */
             transition: opacity 0.3s ease-in-out;
         }
-
-        .logo.aura-dark {
-            height: 60px;
-            /* Diminuindo o tamanho da logo no dark mode */
-            display: block;
-            transition: opacity 0.3s ease-in-out;
-        }
-
-        .logo.aura-dark {
+        
+        .logo.aura-dark { /* Manter o dark mode logo escondido até o tema ser ativado */
             display: none;
+        }
+
+        /* Define que a logo clara é a padrão */
+        body:not(.dark-mode) .logo.aura-light {
+            display: block;
+        }
+        body:not(.dark-mode) .logo.aura-dark {
+            display: none;
+        }
+        body:not(.dark-mode) .logo.etec {
+            display: block;
         }
 
         body.dark-mode .logo.aura-light {
@@ -225,38 +176,30 @@
         }
 
         body.dark-mode .logo.aura-dark {
-            display: block;
+            display: block; /* Mostrar no dark mode */
         }
+        body.dark-mode .logo.etec {
+            display: block; /* Mostrar no dark mode */
+        }
+        /* Fim das novas regras para as logos */
 
-        .header-content .logo.etec {
-            height: 50px;
-            /* Diminuindo o tamanho da logo Etec */
-        }
 
         @media (max-width: 768px) {
             body {
                 padding-top: 80px;
-                /* Ajuste para evitar sobreposição do header (Tablet) */
             }
 
             .header-content {
                 gap: 8px;
             }
-
-            .logo.aura-light {
-                height: 80px;
-                max-width: 40%;
+            
+            /* Logos no header devem ser escondidas para não aparecerem lá */
+            .header .logo.aura-light,
+            .header .logo.aura-dark,
+            .header .logo.etec {
+                display: none;
             }
 
-            .logo.aura-dark {
-                height: 50px;
-                max-width: 40%;
-            }
-
-            .header-content .logo.etec {
-                height: 35px;
-                max-width: 30%;
-            }
 
             .header h1 {
                 font-size: 1.6rem;
@@ -269,12 +212,6 @@
             .header-actions {
                 right: 15px;
                 gap: 10px;
-            }
-
-            .theme-toggle {
-                font-size: 1.3rem;
-                width: 30px;
-                height: 30px;
             }
 
             /* Responsividade para a Equação */
@@ -299,12 +236,16 @@
             .equation-section .equation-item i {
                 font-size: 2.5rem;
             }
+
+            /* Logos dentro da seção de filosofia para mobile */
+            .equation-section .logos-container .logo {
+                height: 60px;
+            }
         }
 
         @media (max-width: 480px) {
             body {
                 padding-top: 70px;
-                /* Ajuste para evitar sobreposição do header (Mobile) */
             }
 
             .header {
@@ -314,21 +255,14 @@
             .header-content {
                 gap: 5px;
             }
-
-            .logo.aura-light {
-                height: 70px;
-                max-width: 45%;
+            
+            /* Logos no header devem ser escondidas para não aparecerem lá */
+            .header .logo.aura-light,
+            .header .logo.aura-dark,
+            .header .logo.etec {
+                display: none;
             }
 
-            .logo.aura-dark {
-                height: 40px;
-                max-width: 45%;
-            }
-
-            .header-content .logo.etec {
-                height: 25px;
-                max-width: 35%;
-            }
 
             .header h1 {
                 font-size: 1.3rem;
@@ -343,14 +277,13 @@
                 gap: 8px;
             }
 
-            .theme-toggle {
-                font-size: 1.1rem;
-                width: 28px;
-                height: 28px;
-            }
-
             .equation-section {
                 padding: 30px 0;
+            }
+
+            /* Logos dentro da seção de filosofia para mobile menor */
+            .equation-section .logos-container .logo {
+                height: 50px;
             }
         }
 
@@ -362,15 +295,18 @@
             margin: 0;
         }
 
+        /* Garante que o texto do cabeçalho seja exibido */
+        .header-content h1 {
+            display: block;
+        }
         .header-content h1 span {
-            display: none;
+            display: inline;
         }
 
         .header p {
             font-size: 0.95rem;
             max-width: 600px;
             margin: 10px auto 0;
-            /* Diminuindo o espaçamento superior */
             color: var(--cor-secundaria);
             font-weight: 400;
             opacity: 0;
@@ -382,7 +318,6 @@
             animation: fadeInSlideUp 0.8s ease-out forwards;
             animation-delay: 0.5s;
         }
-
 
         /* Seção de Projetos */
         .portfolio-section {
@@ -449,6 +384,9 @@
         }
 
         .project-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
             border-bottom: 1px solid var(--cor-borda-card);
         }
 
@@ -466,12 +404,6 @@
             border-color: var(--cor-principal);
             box-shadow: 0 0 0 4px rgba(var(--cor-principal-rgb), 0.5);
             outline: none;
-        }
-
-        .project-card img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
         }
 
         .project-info {
@@ -590,9 +522,6 @@
                 transform: translateY(0);
             }
         }
-
-        /* Estilos dos Modais (Pop-up) - Login Modal Removido */
-        /* Removido completamente o CSS do modal de login já que a funcionalidade foi removida */
 
         /* --- Início: Melhorias de Responsividade para Mobile (Max-width 600px) --- */
         @media (max-width: 600px) {
@@ -715,6 +644,7 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 40px;
+            margin-bottom: 60px;
         }
 
         .equation-item {
@@ -844,6 +774,20 @@
             transition: background-color var(--transicao-suave), box-shadow var(--transicao-suave), border-color var(--transicao-suave);
         }
 
+        /* Estilos para o novo container de logos na seção de Equação */
+        .equation-section .logos-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-top: 80px; /* Espaçamento já aumentado */
+            flex-wrap: wrap; /* Para responsividade */
+        }
+
+        .equation-section .logos-container .logo {
+            height: 80px; /* Tamanho das logos na seção de filosofia */
+        }
+        /* Fim dos estilos para o container de logos */
         /* --- Fim: Estilos para a Seção da Equação --- */
     </style>
 </head>
@@ -853,16 +797,9 @@
     <header class="header" id="home">
         <div class="container">
             <div class="header-content">
-                <img src="./img/logo.png" alt="Logo da Aura, tema claro" class="logo aura-light">
-                <img src="./img/logo2.png" alt="Logo da Aura, tema escuro" class="logo aura-dark">
-
-                <img src="https://bkpsitecpsnew.blob.core.windows.net/uploadsitecps/sites/90/2024/03/etec-darcy_pereira_de_moraes.png"
-                    alt="Logo da Etec Darcy Pereira de Moraes" class="logo etec">
-
+                <h1 id="header-title">Sistemas de Serviços da Etec</h1>
                 <div class="header-actions">
-                    <button id="themeToggle" class="theme-toggle" aria-label="Alternar tema claro e escuro">
-                        <i class="fas fa-sun"></i> </button>
-                </div>
+                    </div>
             </div>
             <p role="doc-subtitle" class="header-description">Conheça os projetos incríveis que criamos para a Etec
                 Darcy Pereira.</p>
@@ -924,7 +861,13 @@
                     <p>Impacto e Inovação</p>
                 </div>
             </div>
-        </div>
+            <div class="logos-container">
+                <img src="./img/logo.png" alt="Logo da Aura, tema claro" class="logo aura-light">
+                <img src="./img/logo2.png" alt="Logo da Aura, tema escuro" class="logo aura-dark">
+                <img src="https://bkpsitecpsnew.blob.core.windows.net/uploadsitecps/sites/90/2024/03/etec-darcy_pereira_de_moraes.png"
+                    alt="Logo da Etec Darcy Pereira de Moraes" class="logo etec">
+            </div>
+            </div>
     </section>
 
     <footer class="footer">
@@ -1014,48 +957,47 @@
                 }, 250);
             });
 
-            /* --- Lógica para o Tema Claro/Escuro --- */
-            const themeToggleBtn = document.getElementById('themeToggle');
+            /* --- Lógica para o Tema Claro/Escuro (Definindo Padrão Claro) --- */
             const body = document.body;
-            const auraLightLogo = document.querySelector('.logo.aura-light');
-            const auraDarkLogo = document.querySelector('.logo.aura-dark');
 
+            function updateLogosVisibilityBasedOnTheme() {
+                const auraLightLogo = document.querySelector('.logos-container .logo.aura-light');
+                const auraDarkLogo = document.querySelector('.logos-container .logo.aura-dark');
+                const etecLogo = document.querySelector('.logos-container .logo.etec');
+                
+                const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-            function applyTheme(isDarkMode) {
-                if (isDarkMode) {
+                // **Lógica ajustada aqui:**
+                // Se o sistema prefere tema escuro, aplica dark-mode.
+                // Caso contrário (ou seja, prefere tema claro ou não tem preferência), NÃO aplica dark-mode.
+                if (prefersDarkScheme) {
                     body.classList.add('dark-mode');
-                    themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
-                    themeToggleBtn.setAttribute('aria-label', 'Alternar para tema claro');
-                    auraLightLogo.style.display = 'none';
-                    auraDarkLogo.style.display = 'block';
                 } else {
-                    body.classList.remove('dark-mode');
-                    themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
-                    themeToggleBtn.setAttribute('aria-label', 'Alternar para tema escuro');
-                    auraLightLogo.style.display = 'block';
-                    auraDarkLogo.style.display = 'none';
+                    body.classList.remove('dark-mode'); // Garante que não está no modo escuro
+                }
+
+                // Ajusta a visibilidade das logos com base na classe 'dark-mode' no body
+                if (auraLightLogo && auraDarkLogo && etecLogo) {
+                    if (body.classList.contains('dark-mode')) {
+                        auraLightLogo.style.display = 'none';
+                        auraDarkLogo.style.display = 'block';
+                        etecLogo.style.display = 'block';
+                    } else {
+                        auraLightLogo.style.display = 'block';
+                        auraDarkLogo.style.display = 'none';
+                        etecLogo.style.display = 'block';
+                    }
                 }
             }
 
-            const savedTheme = localStorage.getItem('theme');
-            const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            // Chamada inicial para aplicar o tema com base na preferência do sistema e exibir logos
+            // Isso garantirá que o tema claro seja o padrão, a menos que o SO do usuário prefira o escuro.
+            updateLogosVisibilityBasedOnTheme();
 
-            if (savedTheme === 'dark') {
-                applyTheme(true);
-            } else if (savedTheme === 'light') {
-                applyTheme(false);
-            } else if (prefersDarkScheme) {
-                applyTheme(true);
-            } else {
-                applyTheme(false);
-            }
+            // Adiciona um listener para mudanças no tema do sistema operacional
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateLogosVisibilityBasedOnTheme);
+            /* --- Fim: Lógica para o Tema Claro/Escuro (Definindo Padrão Claro) --- */
 
-            themeToggleBtn.addEventListener('click', () => {
-                const isDarkMode = body.classList.contains('dark-mode');
-                applyTheme(!isDarkMode);
-                localStorage.setItem('theme', isDarkMode ? 'light' : 'dark');
-            });
-            /* --- Fim: Lógica para o Tema Claro/Escuro --- */
 
             // Animação para os títulos das seções (Nossos Projetos e Nossa Filosofia)
             const sectionTitles = document.querySelectorAll('.portfolio-section h2, .equation-section h2');
@@ -1084,6 +1026,8 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         equationSection.classList.add('animate');
+                        // Garante que as logos sejam exibidas quando a seção aparece
+                        updateLogosVisibilityBasedOnTheme();
                         observer.unobserve(equationSection);
                     }
                 });
@@ -1097,6 +1041,6 @@
         });
     </script>
     <script data-cfasync="false" data-account="SUA_CONTA_AQUI" src="https://cdn.userway.org/widget.js"></script>
-    </body>
+</body>
 
 </html>
